@@ -1,4 +1,6 @@
-theme_PleasVal <-  function(){
+#default
+
+theme_pleasval <-  function(){
   theme_minimal(base_size = 16, base_family = "") %+replace%
     theme(
       axis.text = element_text(size=rel(0.8),color = "#565656"),
@@ -9,6 +11,7 @@ theme_PleasVal <-  function(){
     )
 }
 
+
 #main Spartan Colors
 spartanStyles <- c(
   'Dark Blue' = "#011638",
@@ -18,8 +21,12 @@ spartanStyles <- c(
   'Spartan Grey'= "#D6D6D6",
   'Blue Gray'= "#4B6C8C",
   'Spartan Gray'= "#D6D6D6",
+  'silver' = "#C1C1C1"
   'Dark Grey' = "#565656",
-  'Dark Gray' = "#565656"
+  'Dark Gray' = "#565656",
+  'Mustard' = "#FFC857",
+  'salmon' ="#D16666",
+  'steel' = "#C1C1C1"
 )
 
 #extract the hex code
@@ -32,21 +39,24 @@ styles <- function(...){
   spartanStyles[cols]
 }
 
-#create separate palettes
+# Create separate palettes
 spartanPalettes <- list(
-  `main` = styles('Dark Blue', 'Spartan Blue', 'Light Blue', 'Blue Grey', 'Dark Grey'),
+  `main` = styles('Dark Blue', 'Spartan Blue', 'Light Blue',  'Dark Grey'),
   `blues` = styles('Dark Blue', 'Spartan Blue', 'Light Blue', 'Blue Grey'),
-  `mono` = styles('Spartan Blue')
+  `mono` = styles('Spartan Blue'),
+  `cat` = styles('salmon', 'Mustard', 'Dark Grey','Steel', 'Dark Blue' )
 )
 
-# Functionn to access them
+# Fn to access them
 spartan_palette <- function(palette = "main", reverse = FALSE, ...) {
   pal <- spartanPalettes[[palette]]
+
   if (reverse) pal <- rev(pal)
+
   colorRampPalette(pal, ...)
 }
 
-# Functionn for color scale scale
+# Fn for customer scale
 scale_color_spartan <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
   pal <- spartan_palette(palette = palette, reverse = reverse)
 
